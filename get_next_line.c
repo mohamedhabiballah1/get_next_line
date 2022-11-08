@@ -6,12 +6,12 @@
 /*   By: mhabib-a <mhabib-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:42:41 by mhabib-a          #+#    #+#             */
-/*   Updated: 2022/11/08 23:54:11 by mhabib-a         ###   ########.fr       */
+/*   Updated: 2022/11/09 00:52:15 by mhabib-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
-#define BUFFER_SIZE 1
+#define BUFFER_SIZE 100
 
 char    *ft_read1(int fd, char *s)
 {
@@ -34,6 +34,7 @@ char    *ft_read1(int fd, char *s)
             break;
         sz = read(fd, buff, BUFFER_SIZE);
     }
+    free(buff);
     return (s);
 }
 
@@ -54,8 +55,27 @@ char    *ft_ol(char *ltr)
         i++;
     }
     line[i] = '\n';
-    
     return(line);
+}
+
+char    *ft_left(char *s)
+{
+    char    *str;
+    size_t  i;
+    
+    while (s[i] != '\n' && s[i])
+        i++;
+    str = malloc(sizeof(char) * (ft_strlen(s) - i) + 1);
+    if (!str)
+        return (NULL);
+   /* while(s[i] != '\0')
+    {
+        str[i] = s[i];
+        i++;
+    }
+    str[i] = '\0';*/
+    str = ft_strchr(s,'\n');
+    return (str);
 }
 
 char    *get_next_line(int fd)
@@ -65,7 +85,8 @@ char    *get_next_line(int fd)
 
     ltr = ft_read1(fd,ltr);
     line = ft_ol(ltr);
-    printf("%s",line);
+    ltr = ft_left(ltr);
+    //printf("%s",ltr);
     return(line);
 }
 
@@ -73,8 +94,13 @@ int main()
 {
     int fd;
     char *str;
+    int i = 1;
     fd = open("mohamed", O_RDONLY);
-    str = get_next_line(fd);
-  //  printf("%s",str);    
+    while(i < 5)
+    {
+        str = get_next_line(fd);
+        printf("line [%d] : %s",i, str);
+        i++;
+    }
     return(0);
 }
