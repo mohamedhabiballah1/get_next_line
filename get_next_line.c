@@ -6,13 +6,12 @@
 /*   By: mhabib-a <mhabib-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:42:41 by mhabib-a          #+#    #+#             */
-/*   Updated: 2022/11/09 00:52:15 by mhabib-a         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:39:12 by mhabib-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"get_next_line.h"
-#define BUFFER_SIZE 100
-
+#define BUFFER_SIZE 1
 char    *ft_read1(int fd, char *s)
 {
     ssize_t sz;

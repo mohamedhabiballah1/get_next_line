@@ -6,7 +6,7 @@
 /*   By: mhabib-a <mhabib-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:42:38 by mhabib-a          #+#    #+#             */
-/*   Updated: 2022/11/08 23:15:50 by mhabib-a         ###   ########.fr       */
+/*   Updated: 2022/11/09 01:39:08 by mhabib-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	str[i + j] = '\0';
-    free((char *)s1);
+    //free((char *)s1);
 	return (str);
 }
 
@@ -48,7 +48,7 @@ char	*ft_strchr(const char *s, int c)
 	while (i <= ft_strlen(s))
 	{
 		if (s[i] == (char)c)
-			return ((char *)&s[i]);
+			return ((char *)&s[i + 1]);
 		i++;
 	}
 	return (NULL);
