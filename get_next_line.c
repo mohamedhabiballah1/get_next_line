@@ -6,7 +6,7 @@
 /*   By: mhabib-a <mhabib-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:42:41 by mhabib-a          #+#    #+#             */
-/*   Updated: 2022/11/09 01:39:12 by mhabib-a         ###   ########.fr       */
+/*   Updated: 2022/11/10 02:19:17 by mhabib-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ char    *ft_read1(int fd, char *s)
 {
     ssize_t sz;
     char    *buff;
-    char    *line;
-    
-    buff = malloc(sizeof(char) * BUFFER_SIZE);
+    buff = malloc(sizeof(char) * BUFFER_SIZE + 1);
     if (!buff)
         return (NULL);
     sz = read(fd, buff, BUFFER_SIZE);
@@ -27,11 +25,13 @@ char    *ft_read1(int fd, char *s)
         buff[sz] = 0;
         if(!s)
             s = ft_strdup(buff);
-        else 
+        else
             s = ft_strjoin(s, buff);
         if(ft_strchr(s, '\n'))
             break;
         sz = read(fd, buff, BUFFER_SIZE);
+        if(sz == 0)
+            break;
     }
     free(buff);
     return (s);
@@ -41,8 +41,10 @@ char    *ft_ol(char *ltr)
 {
     char    *line;
     size_t  i = 0;
-
-    while(ltr[i] != '\n')
+    
+    if(!ltr)
+        return (NULL);
+    while(ltr[i] != '\n' && ltr[i])
         i++;
     line = malloc(sizeof(char) * (i + 1));
     if (!line)
@@ -53,27 +55,28 @@ char    *ft_ol(char *ltr)
         line[i] = ltr[i];
         i++;
     }
-    line[i] = '\n';
+    if (ltr[i] && ltr[i] == '\n')
+		line[i++] = '\n';
+    free(ltr);
     return(line);
 }
 
 char    *ft_left(char *s)
 {
     char    *str;
-    size_t  i;
-    
+    size_t  i = 0;
+    size_t  j = 0;
+    if(!s)
+        return (NULL);
     while (s[i] != '\n' && s[i])
         i++;
-    str = malloc(sizeof(char) * (ft_strlen(s) - i) + 1);
+        str = malloc(sizeof(char) * (ft_strlen(s) - i) + 1);
     if (!str)
         return (NULL);
-   /* while(s[i] != '\0')
-    {
-        str[i] = s[i];
-        i++;
-    }
-    str[i] = '\0';*/
-    str = ft_strchr(s,'\n');
+    i++;
+    while (s[i])
+        str[j++] = s[i++];
+    str[j] = '\0';
     return (str);
 }
 
@@ -81,11 +84,12 @@ char    *get_next_line(int fd)
 {
     static char *ltr;
     char        *line;
-
+    
+    if (BUFFER_SIZE <= 0)
+        return (NULL);
     ltr = ft_read1(fd,ltr);
     line = ft_ol(ltr);
     ltr = ft_left(ltr);
-    //printf("%s",ltr);
     return(line);
 }
 
@@ -94,11 +98,11 @@ int main()
     int fd;
     char *str;
     int i = 1;
-    fd = open("mohamed", O_RDONLY);
-    while(i < 5)
+    fd = open("mohamed", O_RDWR);
+    while(i < 2)
     {
         str = get_next_line(fd);
-        printf("line [%d] : %s",i, str);
+        printf("line [%d] : %s\n", i, str);
         i++;
     }
     return(0);
