@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhabib-a <mhabib-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 20:42:41 by mhabib-a          #+#    #+#             */
-/*   Updated: 2022/11/10 23:34:03 by mhabib-a         ###   ########.fr       */
+/*   Created: 2022/11/10 23:08:53 by mhabib-a          #+#    #+#             */
+/*   Updated: 2022/11/10 23:35:25 by mhabib-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
+#include"get_next_line_bonus.h"
 //#define BUFFER_SIZE 1
 char    *ft_read1(int fd, char *s)
 {
@@ -71,20 +71,20 @@ char    *ft_left(char *s)
 
 char    *get_next_line(int fd)
 {
-    static char *ltr;
+    static char *ltr[1024];
     char        *line;
 
     if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) < 0)
     {
-        free(ltr);
-        ltr = NULL;
+        free(*ltr);
+        *ltr = NULL;
         return (NULL);
     }
-    ltr = ft_read1(fd,ltr);
-    if(!ltr)
+    *ltr = ft_read1(fd,*ltr);
+    if(!ltr[fd])
         return (NULL);
-    line = ft_ol(ltr);
-    ltr = ft_left(ltr);
+    line = ft_ol(*ltr);
+    *ltr = ft_left(*ltr);
     return(line);
 }
 
