@@ -6,11 +6,11 @@
 /*   By: mhabib-a <mhabib-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/10 23:08:47 by mhabib-a          #+#    #+#             */
-/*   Updated: 2022/11/10 23:12:18 by mhabib-a         ###   ########.fr       */
+/*   Updated: 2022/11/12 00:43:54 by mhabib-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"get_next_line.h"
+#include"get_next_line_bonus.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
@@ -86,6 +86,7 @@ size_t	ft_strlen(const char *s)
 	}
 	return (len);
 }
+
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	unsigned int	i;

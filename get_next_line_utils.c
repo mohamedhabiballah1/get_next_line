@@ -6,7 +6,7 @@
 /*   By: mhabib-a <mhabib-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:42:38 by mhabib-a          #+#    #+#             */
-/*   Updated: 2022/11/10 23:07:33 by mhabib-a         ###   ########.fr       */
+/*   Updated: 2022/11/12 00:41:03 by mhabib-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ size_t	ft_strlen(const char *s)
 	}
 	return (len);
 }
+
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	unsigned int	i;
