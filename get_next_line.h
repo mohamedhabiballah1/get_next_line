@@ -6,13 +6,12 @@
 /*   By: mhabib-a <mhabib-a@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 20:42:43 by mhabib-a          #+#    #+#             */
-/*   Updated: 2022/11/12 00:37:15 by mhabib-a         ###   ########.fr       */
+/*   Updated: 2022/11/12 19:57:02 by mhabib-a         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
-//# define BUFFER_SIZE 1
 
 # include<stdio.h>
 # include<string.h>
